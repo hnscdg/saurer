@@ -9,10 +9,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 
 @NgModule({
   imports: [
-    WelcomeRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgZorroAntdModule
+    WelcomeRoutingModule
   ],
   declarations: [WelcomeComponent],
   exports: [WelcomeComponent]
