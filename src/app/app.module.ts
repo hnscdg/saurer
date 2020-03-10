@@ -10,34 +10,24 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
-
-import { IconDefinition } from "@ant-design/icons-angular";
-import * as AllIcons from "@ant-design/icons-angular/icons";
 import { BasicFormModule } from './pages/basic-form/basic-form.module';
-import { FormValidateComponent } from './form-validate/form-validate.component';
 import { MonitorModule } from './pages/monitor/monitor.module';
 import { WorkplaceModule } from './pages/workplace/workplace.module';
 
 registerLocaleData(en);
 
-// const antDesignIcons = AllIcons as {
-//   [key: string]: IconDefinition;
-// }
-
-// const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesignIcons[key])
 
 @NgModule({
   // declarations 需要定义本模块的组件，管道等，注意要把本模块下的所有组件添加到该处
   declarations: [
-    AppComponent,
-    FormValidateComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
     IconsProviderModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgZorroAntdModule,
+    // FormsModule,
+    // ReactiveFormsModule,
+    // NgZorroAntdModule,
     AppRoutingModule,
     HttpClientModule,
     BasicFormModule,
@@ -48,8 +38,7 @@ registerLocaleData(en);
     BasicFormModule
   ],
   providers: [
-    { provide: NZ_I18N, useValue: en_US },
-    // { provide: NZ_ICONS, useValue: icons } // inject the service of icon
+    { provide: NZ_I18N, useValue: en_US }
   ],
   bootstrap: [AppComponent]
 })

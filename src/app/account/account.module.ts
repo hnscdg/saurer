@@ -4,9 +4,13 @@ import { AccountComponent } from './account.component';
 import { AccountRoutingModule } from './account-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
-  declarations: [AccountComponent],
+  declarations: [
+    AccountComponent,
+    LoginComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
