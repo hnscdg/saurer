@@ -12,6 +12,12 @@ const routes: Routes = [
   { path: 'basicForm', component: BasicFormComponent }
 ];
 
+// const routes: Routes = [
+//   { path: '', pathMatch: 'full', redirectTo: '/login' },
+//   { path: '', loadChildren: () => import('./account/account.module').then( m => m.AccountModule) },
+//   { path: '', loadChildren: () => import('./pages/welcome/welcome.module').then(m => m.WelcomeModule) }
+// ];
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

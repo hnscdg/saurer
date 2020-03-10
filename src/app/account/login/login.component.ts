@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
-  selector: 'app-welcome',
-  templateUrl: './welcome.component.html',
-  styleUrls: ['./welcome.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.less']
 })
-export class WelcomeComponent implements OnInit {
-
+export class LoginComponent implements OnInit {
   validateForm: FormGroup;
 
   submitForm(): void {
@@ -26,10 +25,5 @@ export class WelcomeComponent implements OnInit {
       remember: [true]
     });
   }
-
-  // constructor() { }
-
-  // ngOnInit() {
-  // }
-
+  
 }
