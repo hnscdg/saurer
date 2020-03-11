@@ -33,9 +33,9 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons)
   imports: [
     BrowserModule,
     IconsProviderModule,
-    // FormsModule,
-    // ReactiveFormsModule,
-    // NgZorroAntdModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgZorroAntdModule,
     AppRoutingModule,
     HttpClientModule,
     BasicFormModule,
