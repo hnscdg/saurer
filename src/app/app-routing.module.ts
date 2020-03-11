@@ -14,7 +14,7 @@ import { BasicFormComponent } from './pages/basic-form/basic-form.component';
 // ];
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: '/account' },
+  { path: '', pathMatch: 'full', redirectTo: '/login' },
   // account 和 layout 模块未懒加载，不需要讲其模块import到app.module.ts中
   { path: '', loadChildren: () => import('./account/account.module').then( m => m.AccountModule) },
   { path: '', loadChildren: () => import('./layout/layout.module').then(m => m.LayoutModule) },

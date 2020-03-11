@@ -6,7 +6,7 @@ import { WorkplaceComponent } from '../pages/workplace/workplace.component';
 import { BasicFormComponent } from '../pages/basic-form/basic-form.component';
 
 const routes: Routes = [
-  { path: 'home', 
+  { path: 'spc', 
     component: LayoutComponent,
     children: 
     [
