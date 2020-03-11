@@ -47,7 +47,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons)
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },
-    // 把图标服务注入到主模块中
+    // 把icon服务注入到主模块中
     { provide: NZ_ICONS, useValue: icons }
   ],
   bootstrap: [AppComponent]
