@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { LoginService } from '../services/login-service';
+import { AuthenticationService } from 'src/app/_services';
+import { first } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-login',
@@ -11,18 +13,25 @@ import { LoginService } from '../services/login-service';
 export class LoginComponent implements OnInit {
   validateForm: FormGroup;
   errorMessage: boolean = false;
+  error = '';
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private loginService: LoginService
-    ) { }
+    private authenticationService: AuthenticationService
+    ) { 
+      // redirect to home if already logged in
+      if(this.authenticationService.currentUserValue) {
+        this.router.navigate(['/']);
+      }
+
+    }
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
       userName: [null, [Validators.required]],
       password: [null, [Validators.required]],
-      remember: [true]
+      // remember: [true]
     });
   }
 
@@ -37,17 +46,20 @@ export class LoginComponent implements OnInit {
     const params = {
       userName: this.validateForm.get('userName').value,
       password: this.validateForm.get('password').value,
-      remember: this.validateForm.get('remember').value
+      // remember: this.validateForm.get('remember').value
     }
     // 登录验证，需要下一步完善
-    this.loginService.login(params).subscribe( result => {
-      if (result.userName == params.userName && result.password == params.password) {
-        this.router.navigate(['/spc/welcome']);
-      }
-      else {
-        this.errorMessage = true;
-      }
-    })
+    this.authenticationService.login(params.userName, params.password)
+        .pipe(first())
+        .subscribe(
+          data => { 
+            console.log(params);
+            this.router.navigate(['/spc/welcome']);
+          },
+          error => {
+            this.errorMessage = true;
+          }
+          );
 
   }
   

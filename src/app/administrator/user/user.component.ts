@@ -41,7 +41,7 @@ export class UserComponent implements OnInit {
         lists.push(list);
       });
       
-    this.listOfData = lists;
+    // this.listOfData = lists;
 
     });
 
