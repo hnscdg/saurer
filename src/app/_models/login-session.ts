@@ -1,8 +1,8 @@
 /**
  * after authentication, return the data regulation
  */
-export interface LoginSession {
-    userName: string,
+export class LoginSession {
+    userName: string;
     password: string;
     remember: boolean;
 }

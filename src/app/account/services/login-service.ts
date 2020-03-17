@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ILoginService } from '../Interfaces/ILogin-service';
 import { Observable } from 'rxjs';
-import { LoginSession } from '../../models/login-session';
+import { LoginSession } from '../../_models/login-session';
 
 @Injectable()
 export class LoginService implements ILoginService {

@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
     // 登录验证，需要下一步完善
     this.loginService.login(params).subscribe( result => {
       if (result.userName == params.userName && result.password == params.password) {
-        this.router.navigate(['/spc']);
+        this.router.navigate(['/spc/welcome']);
       }
       else {
         this.errorMessage = true;

@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { LoginSession } from 'src/app/models/login-session';
+import { LoginSession } from 'src/app/_models/login-session';
 
 // predefined service
 export interface ILoginService {
