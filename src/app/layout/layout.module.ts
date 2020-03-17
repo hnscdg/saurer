@@ -4,8 +4,6 @@ import { LayoutComponent } from './layout.component';
 import { LayoutRoutingModule } from "./layout-routing.module";
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 
-
-
 @NgModule({
   declarations: [LayoutComponent],
   imports: [

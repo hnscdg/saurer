@@ -6,17 +6,19 @@ import { WorkplaceComponent } from '../pages/workplace/workplace.component';
 import { BasicFormComponent } from '../pages/basic-form/basic-form.component';
 import { WelcomeComponent } from '../pages/welcome/welcome.component';
 import { UserComponent } from '../administrator/user/user.component';
+import { AuthGuard } from '../_helpers';
+import { Role } from '../_models';
 
 const routes: Routes = [
   { path: 'spc', 
     component: LayoutComponent,
     children: 
     [
-      { path: 'user', component: UserComponent },
-      { path: 'monitor', component: MonitorComponent },
-      { path: 'workplace', component: WorkplaceComponent },
-      { path: 'welcome', component: WelcomeComponent },
-      { path: 'basicForm', component: BasicFormComponent }
+      { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
+      { path: 'monitor', component: MonitorComponent, canActivate: [AuthGuard] },
+      { path: 'workplace', component: WorkplaceComponent, canActivate: [AuthGuard] },
+      { path: 'welcome', component: WelcomeComponent, canActivate: [AuthGuard] },
+      { path: 'basicForm', component: BasicFormComponent, canActivate: [AuthGuard] }
 
     ]
  },

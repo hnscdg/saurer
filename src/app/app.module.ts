@@ -14,7 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { BasicFormModule } from './pages/basic-form/basic-form.module';
-import { fakeBackendProvider } from './_helpers';
+import { fakeBackendProvider, jwtInterceptor } from './_helpers';
 
 registerLocaleData(en);
 // 定义ICON
@@ -44,7 +44,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons)
     { provide: NZ_I18N, useValue: en_US },
     // 把icon服务注入到主模块中
     { provide: NZ_ICONS, useValue: icons },
-    fakeBackendProvider
+    fakeBackendProvider,
+    jwtInterceptor
   ],
   bootstrap: [AppComponent]
 })

@@ -53,7 +53,6 @@ export class LoginComponent implements OnInit {
         .pipe(first())
         .subscribe(
           data => { 
-            console.log(params);
             this.router.navigate(['/spc/welcome']);
           },
           error => {

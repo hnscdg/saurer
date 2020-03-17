@@ -1,5 +1,5 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 interface ItemData {
@@ -34,6 +34,11 @@ export class RandomUserService {
     genders.forEach(gender => {
       params = params.append('gender', gender);
     });
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Access-Control-Allow-Origin': '*'
+      })
+    }
     return this.http.get<{ results: ItemData[] }>(`${this.randomUserUrl}`, {
       params
     });
