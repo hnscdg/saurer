@@ -17,7 +17,7 @@ export class LayoutComponent implements OnInit {
 
   logout(): void {
     this.authenticationService.logout();
-    this.router.navigateByUrl('/login')
+    this.router.navigateByUrl('/account/login')
   }
   
   changePassword(): void {

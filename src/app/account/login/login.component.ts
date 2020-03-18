@@ -21,10 +21,10 @@ export class LoginComponent implements OnInit {
     private authenticationService: AuthenticationService
     ) { 
       /**
-       * if you input localhost:4200/login on the address, it will redirect to home if already logged in
+       * if you input localhost:4200/account/login on the address, it will redirect to home if already logged in
        */    
       if(this.authenticationService.currentUserValue) {
-        this.router.navigate(['/spc/welcome']);
+        this.router.navigate(['/spc/home']);
       }
 
     }
@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
         .pipe(first())
         .subscribe(
           data => { 
-            this.router.navigate(['/spc/welcome']);
+            this.router.navigate(['/spc/home']);
           },
           error => {
             this.errorMessage = true;

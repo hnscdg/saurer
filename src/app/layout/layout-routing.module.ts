@@ -1,19 +1,22 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import { LayoutComponent } from './layout.component';
 import { MonitorComponent } from '../pages/monitor/monitor.component';
 import { WorkplaceComponent } from '../pages/workplace/workplace.component';
 import { BasicFormComponent } from '../pages/basic-form/basic-form.component';
 import { WelcomeComponent } from '../pages/welcome/welcome.component';
 import { UserComponent } from '../administrator/user/user.component';
+import { HomeComponent } from "../pages/home/home.component";
+
 import { AuthGuard } from '../_helpers';
-import { Role } from '../_models';
 
 const routes: Routes = [
-  { path: 'spc', 
+  { path: '', 
     component: LayoutComponent,
     children: 
     [
+      { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
       { path: 'user', component: UserComponent, canActivate: [AuthGuard] },
       { path: 'monitor', component: MonitorComponent, canActivate: [AuthGuard] },
       { path: 'workplace', component: WorkplaceComponent, canActivate: [AuthGuard] },
