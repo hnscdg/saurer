@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from '../_services';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-layout',
@@ -8,12 +10,18 @@ import { Component, OnInit } from '@angular/core';
 export class LayoutComponent implements OnInit {
   isCollapsed = false;
 
-  constructor() { }
+  constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-
+  logout(): void {
+    this.authenticationService.logout();
+    this.router.navigateByUrl('/login')
+  }
   
+  changePassword(): void {
+    console.log('enter into change password function!');
+  }
 
 }

@@ -20,9 +20,11 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthenticationService
     ) { 
-      // redirect to home if already logged in
+      /**
+       * if you input localhost:4200/login on the address, it will redirect to home if already logged in
+       */    
       if(this.authenticationService.currentUserValue) {
-        this.router.navigate(['/']);
+        this.router.navigate(['/spc/welcome']);
       }
 
     }

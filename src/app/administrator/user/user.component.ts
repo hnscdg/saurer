@@ -29,21 +29,21 @@ export class UserComponent implements OnInit {
   
   requestData() {
     let lists: ListOfData[] = [];
-    this.http.get(this.requireUrl).subscribe(data => {
-      let ret = Array.prototype.slice.call(data); // 将对象转为数组进行下一步遍历
-      ret.forEach(element => {
-        let list: ListOfData = {
-          name: element.name,
-          age: element.age,
-          email: element.email,
-          password: element.password
-        };
-        lists.push(list);
-      });
+    // this.http.get(this.requireUrl).subscribe(data => {
+    //   let ret = Array.prototype.slice.call(data); // 将对象转为数组进行下一步遍历
+    //   ret.forEach(element => {
+    //     let list: ListOfData = {
+    //       name: element.name,
+    //       age: element.age,
+    //       email: element.email,
+    //       password: element.password
+    //     };
+    //     lists.push(list);
+    //   });
       
-    // this.listOfData = lists;
+    // // this.listOfData = lists;
 
-    });
+    // });
 
     this.listOfData = [
       {
