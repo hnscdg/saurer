@@ -1,0 +1,12 @@
+<a nz-dropdown [nzDropdownMenu]="menu" class="user-profile">
+    Welcome User
+    <i nz-icon nzType="down"></i>
+  </a>
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <ul nz-menu nzSelectable>
+      <li nz-menu-item nzDisable>Profile</li>
+      <li nz-menu-item><a (click)="changePassword()">changePassword</a></li>
+      <li nz-menu-divider></li>
+      <li nz-menu-item><a (click)="logout()">logout</a></li>
+    </ul>
+  </nz-dropdown-menu>
