@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./spc-topbar.component.less']
 })
 export class SpcTopbarComponent implements OnInit {
-
+  isCollapsed = false;
+  
   constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {

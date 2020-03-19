@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-spc-sidebar',
@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./spc-sidebar.component.less']
 })
 export class SpcSidebarComponent implements OnInit {
-  isCollapsed = false;
+  @Input() isCollapsed: boolean;
   
   constructor() { }
 
