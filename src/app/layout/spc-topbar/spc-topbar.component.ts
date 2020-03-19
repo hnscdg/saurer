@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthenticationService } from 'src/app/_services';
 import { Router } from '@angular/router';
 
@@ -8,11 +8,20 @@ import { Router } from '@angular/router';
   styleUrls: ['./spc-topbar.component.less']
 })
 export class SpcTopbarComponent implements OnInit {
-  isCollapsed = false;
-  
+  @Output() private passIsCollapsed = new EventEmitter();
+  isCollapsed: boolean = false;
+
   constructor(private authenticationService: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  /**
+   * 点击折叠图标，触发isCollapsed标志位，并将该值传递到父组件layout-component
+   */
+  changeIsCollapsedValue() {
+    this.isCollapsed = !this.isCollapsed;
+    this.passIsCollapsed.emit(this.isCollapsed);
   }
 
   logout(): void {

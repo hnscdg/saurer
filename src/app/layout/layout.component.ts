@@ -15,6 +15,14 @@ export class LayoutComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * 
+   * @param event 获取子组件app-spc-topbar中更改的isCollpased的值，讲该值传递到另外一个子组件app-spc-sidebar
+   */
+  getIsCollapsedValue(event) {
+    this.isCollapsed = event;
+  }
+
   logout(): void {
     this.authenticationService.logout();
     this.router.navigateByUrl('/account/login')

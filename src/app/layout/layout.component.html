@@ -7,7 +7,7 @@
             [(nzCollapsed)]="isCollapsed"
             [nzTrigger]="null">
     <div class="sidebar-logo">
-      <a href="https://ng.ant.design/" target="_blank">
+      <a [routerLink]="['/spc/home']">
         <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
         <h1>SAURER.</h1>
       </a>
@@ -19,20 +19,12 @@
   </nz-sider>
 
   <nz-layout>
-    <nz-header>
-      <div class="app-header">
-        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-            <i class="trigger"
-               nz-icon
-               [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-            ></i>
-        </span>
-      
-        <!-- app spc topbar -->
-        <app-spc-topbar></app-spc-topbar>
 
-      </div>
-    </nz-header>
+        <!-- app spc topbar -->
+        <app-spc-topbar (passIsCollapsed)='getIsCollapsedValue($event)'></app-spc-topbar>
+
+      <!-- </div> -->
+    <!-- </nz-header> -->
 
     <nz-content>
       <div class="inner-content">
@@ -44,4 +36,5 @@
     <app-spc-footer></app-spc-footer>
 
   </nz-layout>
+
 </nz-layout>
