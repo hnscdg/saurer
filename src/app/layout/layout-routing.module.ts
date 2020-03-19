@@ -8,8 +8,10 @@ import { BasicFormComponent } from '../pages/basic-form/basic-form.component';
 import { WelcomeComponent } from '../pages/welcome/welcome.component';
 import { UserComponent } from '../administrator/user/user.component';
 import { HomeComponent } from "../pages/home/home.component";
+import { CalendarComponent } from '../pages/calendar/calendar.component';
 
 import { AuthGuard } from '../_helpers';
+import { Error403Component } from '../pages/error/error403/error403.component';
 
 const routes: Routes = [
   { path: '', 
@@ -21,7 +23,9 @@ const routes: Routes = [
       { path: 'monitor', component: MonitorComponent, canActivate: [AuthGuard] },
       { path: 'workplace', component: WorkplaceComponent, canActivate: [AuthGuard] },
       { path: 'welcome', component: WelcomeComponent, canActivate: [AuthGuard] },
-      { path: 'basicForm', component: BasicFormComponent, canActivate: [AuthGuard] }
+      { path: 'basicForm', component: BasicFormComponent, canActivate: [AuthGuard] },
+      { path: 'calendar', component: CalendarComponent, canActivate: [AuthGuard] },
+      { path: '403', component: Error403Component, canActivate: [AuthGuard] }
 
     ]
  },

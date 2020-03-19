@@ -6,12 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./monitor.component.less']
 })
 export class MonitorComponent implements OnInit {
-  date = new Date(2012, 11, 21);
-  mode = 'month';
-
-  panelChange(change: { date: Date; mode: string }): void {
-    console.log(change.date, change.mode);
-  }
+  
+  deadline = Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30;
 
   constructor() { }
 

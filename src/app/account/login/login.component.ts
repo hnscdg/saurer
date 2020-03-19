@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
        * if you input localhost:4200/account/login on the address, it will redirect to home if already logged in
        */    
       if(this.authenticationService.currentUserValue) {
-        this.router.navigate(['/home']);
+        this.router.navigate(['spc/home']);
       }
 
     }
@@ -38,9 +38,9 @@ export class LoginComponent implements OnInit {
       // remember: [true]
     });
 
+    // 获取路由参数
     this.activeRoute.queryParams.subscribe(queryParam => {
       this.returnUrl = queryParam.returnUrl;
-      console.log(queryParam.returnUrl);
     });
 
   }

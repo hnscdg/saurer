@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MonitorComponent } from './monitor.component';
-import { NzCalendarModule } from 'ng-zorro-antd/calendar';
-
+import { NzStatisticModule } from "ng-zorro-antd/statistic";
 
 @NgModule({
   declarations: [MonitorComponent],
   imports: [
     CommonModule,
-    NzCalendarModule
+    NzStatisticModule
   ]
 })
 export class MonitorModule { }
