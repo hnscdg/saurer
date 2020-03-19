@@ -2,12 +2,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: '/spc/home' },
+  { path: '', pathMatch: 'full', redirectTo: 'account/login' },
   // account 和 layout 模块未懒加载，不需要讲其模块import到app.module.ts中
   { 
     path: 'account', 
-    loadChildren: () => import('./account/account.module').then( m => m.AccountModule),
-    data: { preload: true }
+    loadChildren: () => import('./account/account.module').then( m => m.AccountModule)
   },
   { 
     path: 'spc', 

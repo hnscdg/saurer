@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { AuthenticationService } from 'src/app/_services';
 import { first } from 'rxjs/operators';
 
@@ -14,17 +14,19 @@ export class LoginComponent implements OnInit {
   validateForm: FormGroup;
   errorMessage: boolean = false;
   error = '';
+  returnUrl: string;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private activeRoute: ActivatedRoute
     ) { 
       /**
        * if you input localhost:4200/account/login on the address, it will redirect to home if already logged in
        */    
       if(this.authenticationService.currentUserValue) {
-        this.router.navigate(['/spc/home']);
+        this.router.navigate(['/home']);
       }
 
     }
@@ -35,6 +37,12 @@ export class LoginComponent implements OnInit {
       password: [null, [Validators.required]],
       // remember: [true]
     });
+
+    this.activeRoute.queryParams.subscribe(queryParam => {
+      this.returnUrl = queryParam.returnUrl;
+      console.log(queryParam.returnUrl);
+    });
+
   }
 
   submitForm(): void {
@@ -50,12 +58,16 @@ export class LoginComponent implements OnInit {
       password: this.validateForm.get('password').value,
       // remember: this.validateForm.get('remember').value
     }
-    // 登录验证，需要下一步完善
+    // 登录验证,如果是第一次登录，跳转到home主页，否则跳转到之前的页面
     this.authenticationService.login(params.userName, params.password)
         .pipe(first())
         .subscribe(
           data => { 
-            this.router.navigate(['/spc/home']);
+            if(this.returnUrl == undefined){
+              this.router.navigate(['spc/home']);
+            }else {
+              this.router.navigate([this.returnUrl])
+            }
           },
           error => {
             this.errorMessage = true;

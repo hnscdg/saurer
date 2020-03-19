@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthenticationService } from 'src/app/_services';
 import { Router } from '@angular/router';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { User } from 'src/app/_models/user';
 
 @Component({
   selector: 'app-spc-topbar',
@@ -10,8 +12,13 @@ import { Router } from '@angular/router';
 export class SpcTopbarComponent implements OnInit {
   @Output() private passIsCollapsed = new EventEmitter();
   isCollapsed: boolean = false;
+  private currentUserSubject: BehaviorSubject<User>;
+  public currentUser: string;
 
-  constructor(private authenticationService: AuthenticationService, private router: Router) { }
+  constructor(private authenticationService: AuthenticationService, private router: Router) {
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUser = this.currentUserSubject.value.username;
+   }
 
   ngOnInit(): void {
   }
