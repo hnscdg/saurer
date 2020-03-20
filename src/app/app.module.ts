@@ -14,8 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { BasicFormModule } from './pages/basic-form/basic-form.module';
-import { MonitorModule } from './pages/monitor/monitor.module';
-import { WorkplaceModule } from './pages/workplace/workplace.module';
+import { fakeBackendProvider, jwtInterceptor } from './_helpers';
 
 registerLocaleData(en);
 // 定义ICON
@@ -39,16 +38,14 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons)
     AppRoutingModule,
     HttpClientModule,
     BasicFormModule,
-    BrowserAnimationsModule,
-    // 以下三个模块需要导入到主模块下，否则该模块下的form无法使用
-    MonitorModule, 
-    WorkplaceModule,
-    BasicFormModule
+    BrowserAnimationsModule
   ],
   providers: [
     { provide: NZ_I18N, useValue: en_US },
-    // 把图标服务注入到主模块中
-    { provide: NZ_ICONS, useValue: icons }
+    // 把icon服务注入到主模块中
+    { provide: NZ_ICONS, useValue: icons },
+    fakeBackendProvider,
+    jwtInterceptor
   ],
   bootstrap: [AppComponent]
 })

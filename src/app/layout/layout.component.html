@@ -1,4 +1,5 @@
 <nz-layout class="app-layout">
+
   <nz-sider class="menu-sidebar"
             nzCollapsible
             nzWidth="256px"
@@ -6,50 +7,34 @@
             [(nzCollapsed)]="isCollapsed"
             [nzTrigger]="null">
     <div class="sidebar-logo">
-      <a href="https://ng.ant.design/" target="_blank">
+      <a [routerLink]="['home']">
         <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
         <h1>SAURER.</h1>
       </a>
     </div>
-    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
-      <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <i nz-icon [nzType]="'home'"></i>
-            <a routerLink="welcome">Welcome</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="monitor">Monitor</a>
-          </li>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="workplace">Workplace</a>
-          </li>
-        </ul>
-      </li>
-      <li nz-submenu nzOpen nzTitle="Form" nzIcon="form">
-        <ul>
-          <li nz-menu-item nzMatchRouter>
-            <a routerLink="basicForm">Basic Form</a>
-          </li>
-        </ul>
-      </li>
-    </ul>
+
+    <!-- 父组件需要向子组件传递isCollapsed的值，子组件能够实时跟踪该值得变化 -->
+    <app-spc-sidebar [isCollapsed]="isCollapsed"></app-spc-sidebar>
+
   </nz-sider>
+
   <nz-layout>
-    <nz-header>
-      <div class="app-header">
-        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
-            <i class="trigger"
-               nz-icon
-               [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-            ></i>
-        </span>
-      </div>
-    </nz-header>
+
+        <!-- app spc topbar -->
+        <app-spc-topbar (passIsCollapsed)='getIsCollapsedValue($event)'></app-spc-topbar>
+
+      <!-- </div> -->
+    <!-- </nz-header> -->
+
     <nz-content>
       <div class="inner-content">
         <router-outlet></router-outlet>
       </div>
     </nz-content>
+
+    <!-- app spc footer -->
+    <app-spc-footer></app-spc-footer>
+
   </nz-layout>
+
 </nz-layout>

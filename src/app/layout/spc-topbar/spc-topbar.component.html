@@ -1,0 +1,25 @@
+<nz-header> 
+  <div class="app-header">
+  <span class="header-trigger" (click)='changeIsCollapsedValue()'>
+        <i class="trigger"
+          nz-icon
+          [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+        ></i>
+  </span>
+
+  <a nz-dropdown [nzDropdownMenu]="menu" class="user-profile">
+    {{currentUser}}
+    <i nz-icon nzType="down"></i>
+  </a>
+  <nz-dropdown-menu #menu="nzDropdownMenu">
+    <ul nz-menu nzSelectable>
+      <li nz-menu-item nzDisable>Profile</li>
+      <li nz-menu-item><a (click)="changePassword()">changePassword</a></li>
+      <li nz-menu-divider></li>
+      <li nz-menu-item><a (click)="logout()">logout</a></li>
+    </ul>
+  </nz-dropdown-menu>
+
+</div>
+
+</nz-header> 

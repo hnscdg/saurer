@@ -18,6 +18,7 @@ import { LoginComponent } from './login/login.component';
     ReactiveFormsModule,
     NgZorroAntdModule,
   ],
-  exports: [AccountComponent]
+  exports: [AccountComponent],
+
 })
 export class AccountModule { }
