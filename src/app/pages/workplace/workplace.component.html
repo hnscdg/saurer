@@ -1,4 +1,4 @@
-<!-- <nz-timeline nzMode="alternate">
+<nz-timeline nzMode="alternate">
     <nz-timeline-item>Create a services site 2015-09-01</nz-timeline-item>
     <nz-timeline-item nzColor="green">Solve initial network problems 2015-09-01</nz-timeline-item>
     <nz-timeline-item [nzDot]="dotTemplate"
@@ -12,6 +12,18 @@
   </nz-timeline>
   <ng-template #dotTemplate>
     <i nz-icon nzType="clock-circle-o" style="font-size: 16px;"></i>
-  </ng-template> -->
+  </ng-template>
 
-  welcome to workplace page!
+  <nz-steps [nzCurrent]="1" nzProgressDot>
+    <nz-step nzTitle="Finished" nzDescription="This is a description."></nz-step>
+    <nz-step nzTitle="In Progress" nzDescription="This is a description."></nz-step>
+    <nz-step nzTitle="Waiting" nzDescription="This is a description."></nz-step>
+  </nz-steps>
+  <nz-divider></nz-divider>
+  <nz-steps [nzCurrent]="1" nzProgressDot nzDirection="vertical">
+    <nz-step nzTitle="Finished" nzDescription="This is a description. This is a description."></nz-step>
+    <nz-step nzTitle="Finished" nzDescription="This is a description. This is a description."></nz-step>
+    <nz-step nzTitle="In Progress" nzDescription="This is a description. This is a description."></nz-step>
+    <nz-step nzTitle="Waiting" nzDescription="This is a description."></nz-step>
+    <nz-step nzTitle="Waiting" nzDescription="This is a description."></nz-step>
+  </nz-steps>

@@ -2,77 +2,86 @@ import { Component, OnInit } from '@angular/core';
 // import { Scene, LineLayer, CityBuildingLayer } from '@antv/l7';
 // import { GaodeMap } from '@antv/l7-maps';
 
+interface ItemData {
+  name: string;
+  age: number | string;
+  address: string;
+  checked: boolean;
+  expand: boolean;
+  description: string;
+  disabled?: boolean;
+}
+
 @Component({
   selector: 'app-welcome',
   templateUrl: './welcome.component.html',
   styleUrls: ['./welcome.component.less']
 })
 export class WelcomeComponent implements OnInit {
+  listOfData: ItemData[] = [];
+  displayData: ItemData[] = [];
+  bordered = false;
+  loading = false;
+  sizeChanger = false;
+  pagination = true;
+  header = true;
+  title = true;
+  footer = true;
+  fixHeader = false;
+  size = 'small';
+  expandable = true;
+  checkbox = true;
+  allChecked = false;
+  indeterminate = false;
+  simple = false;
+  noResult = false;
+  position = 'bottom';
+
+  currentPageDataChange($event: ItemData[]): void {
+    this.displayData = $event;
+    this.refreshStatus();
+  }
+
+  refreshStatus(): void {
+    const validData = this.displayData.filter(value => !value.disabled);
+    const allChecked = validData.length > 0 && validData.every(value => value.checked === true);
+    const allUnChecked = validData.every(value => !value.checked);
+    this.allChecked = allChecked;
+    this.indeterminate = !allChecked && !allUnChecked;
+  }
+
+  checkAll(value: boolean): void {
+    this.displayData.forEach(data => {
+      if (!data.disabled) {
+        data.checked = value;
+      }
+    });
+    this.refreshStatus();
+  }
+
+
   constructor() { }
 
   
-  ngOnInit() {
-
-    // const scene = new Scene({
-    //   id: 'map',
-    //   map: new GaodeMap({
-    //     style: 'amap://styles/a49ef8d081db7b85adb2e90ba7941f1e?isPublic=true',
-    //     center: [ 120.173104, 30.244072 ],
-    //     pitch: 70.41138037735848,
-    //     zoom: 17.18,
-    //     rotation: 2.24, // 358.7459759480504
-    //     minZoom: 14
-    //   })
-    // });
-    
-    // scene.on('loaded', () => {
-    //   fetch(
-    //     'https://gw.alipayobjects.com/os/rmsportal/ggFwDClGjjvpSMBIrcEx.json'
-    //   )
-    //     .then(res => res.json())
-    //     .then(data => {
-    //       const layer = new CityBuildingLayer(
-    //         {
-    //           zIndex: 0
-    //         }
-    //       );
-    //       layer
-    //         .source(data)
-    //         .size('floor', [ 100, 3000 ])
-    //         .color('rgba(242,246,250,0.5)')
-    //         .animate({
-    //           enable: true
-    //         })
-    //         .style({
-    //           opacity: 1.0,
-    //           baseColor: 'rgba(36,16,63,0.3)',
-    //           windowColor: '#0e0220',
-    //           brightColor: '#08faee'
-    //         });
-    //       scene.addLayer(layer);
-    //     });
-    //   fetch(
-    //     'https://gw.alipayobjects.com/os/basement_prod/40ef2173-df66-4154-a8c0-785e93a5f18e.json'
-    //   )
-    //     .then(res => res.json())
-    //     .then(data => {
-    //       const layer = new LineLayer({
-    //         zIndex: 0
-    //       })
-    //         .source(data)
-    //         .size(1)
-    //         .shape('line')
-    //         .color('#ff893a')
-    //         .animate({
-    //           interval: 1, // 间隔
-    //           duration: 2, // 持续时间，延时
-    //           trailLength: 2 // 流线长度
-    //         });
-    //       scene.addLayer(layer);
-    //     });
-    
-    // });
-
-
+  ngOnInit(): void {
+    for (let i = 1; i <= 100; i++) {
+      this.listOfData.push({
+        name: 'John Brown',
+        age: `${i}2`,
+        address: `New York No. ${i} Lake Park`,
+        description: `My name is John Brown, I am ${i}2 years old, living in New York No. ${i} Lake Park.`,
+        checked: false,
+        expand: false
+      });
+    }
   }
+
+  noResultChange(status: boolean): void {
+    this.listOfData = [];
+    if (!status) {
+      this.ngOnInit();
+    }
+  }
+
+
 }

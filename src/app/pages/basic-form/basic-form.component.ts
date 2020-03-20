@@ -1,99 +1,51 @@
-import { Component, OnInit, Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
-interface ItemData {
-  gender: string;
-  name: Name;
-  email: string;
-}
-
-interface Name {
-  title: string;
-  first: string;
-  last: string;
-}
-
-@Injectable()
-
-export class RandomUserService {
-  randomUserUrl = 'https://api.randomuser.me';
-
-  getUsers ( 
-    pageIndex: number = 1,
-    pageSize: number = 10,
-    sortField: string,
-    sortOrder: string,
-    genders: string[]
-  ): Observable<{results: ItemData[] }> {
-    let params = new HttpParams()
-    .append('page', `${pageIndex}`)
-    .append('results', `${pageSize}`)
-    .append('sortField', sortField)
-    .append('sortOrder', sortOrder);
-    genders.forEach(gender => {
-      params = params.append('gender', gender);
-    });
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Access-Control-Allow-Origin': '*'
-      })
-    }
-    return this.http.get<{ results: ItemData[] }>(`${this.randomUserUrl}`, {
-      params
-    });
-    }
-
-    constructor(private http: HttpClient) {}
-
-}
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-basic-form',
   templateUrl: './basic-form.component.html',
   styleUrls: ['./basic-form.component.less'],
-  providers: [RandomUserService]
 })
-export class BasicFormComponent implements OnInit {
-  pageIndex = 1;
-  pageSize = 10;
-  total = 1;
-  listOfData: ItemData[] = [];
-  loading = true;
-  sortValue: string | null = null;
-  sortKey: string | null = null;
-  filterGender = [{ text: 'male', value: 'male' }, { text: 'female', value: 'female' }];
-  searchGenderList: string[] = [];
-
-  sort(sort: { key: string; value: string }): void {
-    this.sortKey = sort.key;
-    this.sortValue = sort.value;
-    this.searchData();
-  }
-
-  searchData(reset: boolean = false): void {
-    if (reset) {
-      this.pageIndex = 1;
+export class BasicFormComponent {
+  listOfData = [
+    {
+      key: '1',
+      name: 'John Brown',
+      age: 32,
+      tel: '0571-22098909',
+      phone: 18889898989,
+      address: 'New York No. 1 Lake Park'
+    },
+    {
+      key: '2',
+      name: 'Jim Green',
+      tel: '0571-22098333',
+      phone: 18889898888,
+      age: 42,
+      address: 'London No. 1 Lake Park'
+    },
+    {
+      key: '3',
+      name: 'Joe Black',
+      age: 32,
+      tel: '0575-22098909',
+      phone: 18900010002,
+      address: 'Sidney No. 1 Lake Park'
+    },
+    {
+      key: '4',
+      name: 'Jim Red',
+      age: 18,
+      tel: '0575-22098909',
+      phone: 18900010002,
+      address: 'London No. 2 Lake Park'
+    },
+    {
+      key: '5',
+      name: 'Jake White',
+      age: 18,
+      tel: '0575-22098909',
+      phone: 18900010002,
+      address: 'Dublin No. 2 Lake Park'
     }
-    this.loading = true;
-    this.randomUserService
-      .getUsers(this.pageIndex, this.pageSize, this.sortKey!, this.sortValue!, this.searchGenderList)
-      .subscribe(data => {
-        this.loading = false;
-        this.total = 200;
-        this.listOfData = data.results;
-      });
-  }
-
-  updateFilter(value: string[]): void {
-    this.searchGenderList = value;
-    this.searchData(true);
-  }
-
-  constructor(private randomUserService: RandomUserService) { }
-
-  ngOnInit(): void {
-    this.searchData();
-  }
-
+  ];
 }

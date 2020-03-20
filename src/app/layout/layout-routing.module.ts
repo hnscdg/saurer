@@ -12,6 +12,8 @@ import { CalendarComponent } from '../pages/calendar/calendar.component';
 
 import { AuthGuard } from '../_helpers';
 import { Error403Component } from '../pages/error/error403/error403.component';
+import { Error404Component } from '../pages/error/error404/error404.component';
+import { Error500Component } from '../pages/error/error500/error500.component';
 
 const routes: Routes = [
   { path: '', 
@@ -25,7 +27,9 @@ const routes: Routes = [
       { path: 'welcome', component: WelcomeComponent, canActivate: [AuthGuard] },
       { path: 'basicForm', component: BasicFormComponent, canActivate: [AuthGuard] },
       { path: 'calendar', component: CalendarComponent, canActivate: [AuthGuard] },
-      { path: '403', component: Error403Component, canActivate: [AuthGuard] }
+      { path: '403', component: Error403Component, canActivate: [AuthGuard] },
+      { path: '404', component: Error404Component, canActivate: [AuthGuard] },
+      { path: '500', component: Error500Component, canActivate: [AuthGuard] },
 
     ]
  },
